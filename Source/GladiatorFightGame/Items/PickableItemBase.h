@@ -16,7 +16,7 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 
-	bool AttachItemTo(USkeletalMeshComponent* MeshRoot, FName socket);
+	bool AttachItemTo(USkeletalMeshComponent* MeshRoot, FName Socket);
 	
 protected:
 	virtual void BeginPlay() override;

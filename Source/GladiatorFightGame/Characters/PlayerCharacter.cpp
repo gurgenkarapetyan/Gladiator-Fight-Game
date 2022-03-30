@@ -3,11 +3,31 @@
 
 #include "PlayerCharacter.h"
 
+#include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "GladiatorFightGame/Items/PickableItemBase.h"
+#include "GladiatorFightGame/Items/PickableWeapon.h"
 
 void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+
+	GetCapsuleComponent()->OnComponentBeginOverlap.AddDynamic(this, &APlayerCharacter::OnBeginOverlap);
+}
+
+void APlayerCharacter::OnBeginOverlap(UPrimitiveComponent* OverlapComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& HitResult)
+{
+	if (OtherActor->ActorHasTag("Shield"))
+	{
+		APickableItemBase* PickedShield = Cast<APickableItemBase>(OtherActor);
+		PickShield(PickedShield);
+	}
+	
+	if (OtherActor->ActorHasTag("Hammer"))
+	{
+		APickableWeapon* PickedWeapon = Cast<APickableWeapon>(OtherActor);
+		PickHammer(PickedWeapon);
+	}
 }
 
 void APlayerCharacter::Tick(float DeltaSeconds)
@@ -24,6 +44,8 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAxis("Turn", this, &APlayerCharacter::Turn);
 	PlayerInputComponent->BindAxis("LookUp", this, &APlayerCharacter::LookUp);
 }
+
+
 
 void APlayerCharacter::MoveForward(float Value)
 {

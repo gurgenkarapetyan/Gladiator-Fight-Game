@@ -21,8 +21,18 @@ void APickableItemBase::Tick(float DeltaTime)
 
 }
 
-bool APickableItemBase::AttachItemTo(USkeletalMeshComponent* MeshRoot, FName socket)
+bool APickableItemBase::AttachItemTo(USkeletalMeshComponent* MeshRoot, FName Socket)
 {
-	return false;
+	if (IsUsed)
+	{
+		return false;
+	}
+
+	AttachToComponent(MeshRoot, FAttachmentTransformRules::SnapToTargetNotIncludingScale, Socket);
+	SetActorRelativeLocation(FVector::ZeroVector);
+	SetActorRelativeRotation(FRotator::ZeroRotator);
+
+	IsUsed = true;
+	return true;
 }
 
