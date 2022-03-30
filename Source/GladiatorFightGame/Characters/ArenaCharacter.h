@@ -26,6 +26,7 @@ public:
 	bool PickHammer(APickableWeapon* PickedWeapon);
 
 	void Attack();
+	
 protected:
 	virtual void BeginPlay() override;
 

@@ -74,5 +74,5 @@ bool AArenaCharacter::PickHammer(APickableWeapon* PickedWeapon)
 
 void AArenaCharacter::Attack()
 {
-	
+	bIsAttacking = true;
 }

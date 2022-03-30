@@ -43,9 +43,9 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAxis("MoveRight", this, &APlayerCharacter::MoveRight);
 	PlayerInputComponent->BindAxis("Turn", this, &APlayerCharacter::Turn);
 	PlayerInputComponent->BindAxis("LookUp", this, &APlayerCharacter::LookUp);
+
+	PlayerInputComponent->BindAction("Attack", IE_Pressed,this, &APlayerCharacter::TriggerAttack);
 }
-
-
 
 void APlayerCharacter::MoveForward(float Value)
 {
@@ -89,4 +89,12 @@ void APlayerCharacter::LookUp(float Value)
 {
 	const float Input = Value * 100.f * GetWorld()->GetDeltaSeconds();
 	AddControllerPitchInput(Input);
+}
+
+void APlayerCharacter::TriggerAttack()
+{
+	if (WeaponActor)
+	{
+		Attack();
+	}
 }

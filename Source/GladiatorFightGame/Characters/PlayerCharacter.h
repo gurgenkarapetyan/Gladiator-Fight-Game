@@ -21,7 +21,8 @@ public:
 
 	UFUNCTION()
 	virtual void OnBeginOverlap(UPrimitiveComponent* OverlapComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& HitResult);
-	
+
+	void TriggerAttack();
 protected:
 	virtual void BeginPlay() override;
 
