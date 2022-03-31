@@ -21,6 +21,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void TriggerAttack();
+
+	UFUNCTION()
+	virtual void OnWeaponBeginOverlap(UPrimitiveComponent* OverlapComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& HitResult);
 	
 protected:
 	virtual void BeginPlay() override;
@@ -31,4 +34,7 @@ private:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta=(AllowPrivateAccess="true"))
 	TSubclassOf<APickableWeapon> Weapon;
+
+	bool bCanDetectCollision;
+	bool bDisableAttack;
 };
