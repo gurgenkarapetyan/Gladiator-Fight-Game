@@ -18,6 +18,10 @@ public:
 	virtual void Tick(float DeltaSeconds) override;
 
 	void CreateAndAttachWeapons();
+
+	UFUNCTION(BlueprintCallable)
+	void TriggerAttack();
+	
 protected:
 	virtual void BeginPlay() override;
 

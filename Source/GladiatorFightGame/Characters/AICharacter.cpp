@@ -36,4 +36,7 @@ void AAICharacter::Tick(float DeltaSeconds)
 	Super::Tick(DeltaSeconds);
 }
 
-
+void AAICharacter::TriggerAttack()
+{
+	Attack();
+}
